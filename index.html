@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADEM Ministerios | Iglesia Cristiana Evangélica</title>
+    
+    <!-- Meta etiquetas Open Graph para vista previa en WhatsApp y Redes Sociales -->
+    <meta property="og:title" content="ADEM Ministerios | Iglesia Cristiana Evangélica">
+    <meta property="og:description" content="Existimos para exaltar el nombre de Jesucristo, proclamar la verdad de su Palabra y discipular a su iglesia.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Tipografías para estilo Worship / Editorial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0B0F19;
+            --surface-card: rgba(255, 255, 255, 0.05);
+            --surface-border: rgba(255, 255, 255, 0.12);
+            --accent-blue: #2563EB;
+            --accent-glow: rgba(37, 99, 235, 0.35);
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --live-red: #EF4444;
+            --gold-accent: #F59E0B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px 16px 48px;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.22) 0%, transparent 60%),
+                radial-gradient(circle at 100% 100%, rgba(30, 58, 138, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Top Header & Logo */
+        .hero {
+            text-align: center;
+            padding: 16px 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            width: 100%;
+            max-width: 220px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            max-height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 14px rgba(37, 99, 235, 0.3));
+        }
+
+        .church-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #60A5FA;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            max-width: 360px;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--surface-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title-group svg {
+            color: #60A5FA;
+        }
+
+        .card-header h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+
+        /* Live Badge */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #FCA5A5;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--live-red);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Video Container */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .live-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Versículo del Día Box */
+        .verse-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.4) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.25);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .verse-day-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .verse-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.55;
+            color: #E2E8F0;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .verse-ref {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #60A5FA;
+        }
+
+        /* Carousel de Eventos */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 140px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.4; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .event-badge {
+            align-self: flex-start;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #F59E0B;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .event-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.3;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: #60A5FA;
+            font-weight: 600;
+        }
+
+        .event-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.2s;
+        }
+
+        .dot.active {
+            background: var(--accent-blue);
+        }
+
+        /* Schedule List */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .schedule-day {
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #E2E8F0;
+        }
+
+        .schedule-time {
+            font-size: 0.82rem;
+            color: #60A5FA;
+            font-weight: 700;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        /* Location Info */
+        .location-info {
+            border-top: 1px solid var(--surface-border);
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .location-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .location-ref {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-map:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        /* Social Network Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(96, 165, 250, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.full-width {
+            grid-column: span 2;
+        }
+
+        /* Primary WhatsApp Button */
+        .btn-whatsapp-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .btn-whatsapp-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 12px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-quote {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .footer-brand {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header con Logo (Normal, sin acciones ocultas) -->
+        <header class="hero">
+            <div class="logo-container">
+                <img src="logo.png" alt="ADEM Ministerios Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<svg width=\'48\' height=\'48\' fill=\'none\' stroke=\'#60A5FA\' stroke-width=\'2\' viewBox=\'0 0 24 24\'><path d=\'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\'/></svg>'">
+            </div>
+            <span class="church-tag">IGLESIA EVANGÉLICA</span>
+            <p>Existimos para exaltar el nombre de Jesucristo, proclamar la verdad de su Palabra y discipular a su iglesia.</p>
+        </header>
+
+        <!-- Versículo del Día -->
+        <section class="glass-card">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <h2>Versículo del Día</h2>
+                </div>
+            </div>
+
+            <div class="verse-box">
+                <span class="verse-day-tag" id="verse-day">HOY</span>
+                <p class="verse-text" id="verse-text">Cargando la Palabra de Dios...</p>
+                <span class="verse-ref" id="verse-ref"></span>
+            </div>
+        </section>
+
+        <!-- Transmisión en Vivo (YouTube) -->
+        <section class="glass-card">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <h2>Reunión en Vivo</h2>
+                </div>
+                <span class="live-badge">
+                    <span class="live-dot"></span>
+                    Domingos 5 PM
+                </span>
+            </div>
+
+            <div class="video-responsive">
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCVP-j0N8M89akCeeDJcBPDg" title="Transmisión en vivo de ADEM Ministerios" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <p class="live-subtitle">Sintoniza la predicación expositiva y el tiempo de adoración en directo cada domingo.</p>
+        </section>
+
+        <!-- Próximos Eventos (Carrusel Dinámico Multianuncio) -->
+        <section class="glass-card">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.684A1.761 1.761 0 013 12c0-.97.784-1.76 1.75-1.76h3.111l2.583-6.458a.75.75 0 011.391.272v15.892a.75.75 0 01-1.391.272L7.861 13.684H5.436z"></path></svg>
+                    <h2>Próximos Eventos</h2>
+                </div>
+            </div>
+
+            <div class="carousel-container">
+                <div class="event-box" id="event-card">
+                    <span class="event-badge" id="event-badge">ANUNCIO ESPECIAL</span>
+                    <h3 class="event-title" id="event-title">Culto Especial & Tiempo de Fraternidad</h3>
+                    <div class="event-meta">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <span id="event-meta-text">Próximamente — Consulta nuestras reuniones</span>
+                    </div>
+                    <p class="event-desc" id="event-desc">Te invitamos a acompañarnos en nuestras reuniones semanales para escuchar la Palabra de Dios y perseverar juntos en oración.</p>
+                </div>
+
+                <div class="carousel-controls" id="carousel-controls" style="display: none;">
+                    <button class="carousel-btn" id="prev-btn">❮ Anterior</button>
+                    <div class="carousel-indicators" id="carousel-dots"></div>
+                    <button class="carousel-btn" id="next-btn">Siguiente ❯</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Horarios y Ubicación Presencial -->
+        <section class="glass-card">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <h2>Cultos & Reuniones</h2>
+                </div>
+            </div>
+            
+            <div class="schedule-list">
+                <div class="schedule-item">
+                    <div class="schedule-day">
+                        <svg width="18" height="18" fill="none" stroke="#60A5FA" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Reunión de Oración</span>
+                    </div>
+                    <span class="schedule-time">Martes 7:00 PM</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-day">
+                        <svg width="18" height="18" fill="none" stroke="#60A5FA" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span>Culto de Jóvenes</span>
+                    </div>
+                    <span class="schedule-time">Sábado 7:00 PM</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-day">
+                        <svg width="18" height="18" fill="none" stroke="#60A5FA" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <span>Culto Dominical</span>
+                    </div>
+                    <span class="schedule-time">Domingo 5:00 PM</span>
+                </div>
+            </div>
+
+            <div class="location-info">
+                <div class="location-title">Cruce Los Laureles con Jr. 7 de Febrero</div>
+                <div class="location-ref">Referencia: Paradero Jesús Vive</div>
+            </div>
+
+            <a href="https://maps.app.goo.gl/wBiNM7rx6jVeVDfn7" class="btn-map" target="_blank" rel="noopener">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                Abrir ubicación en Google Maps
+            </a>
+        </section>
+
+        <!-- Redes Sociales & Medios Digitales -->
+        <section class="glass-card">
+            <div class="card-header">
+                <div class="card-title-group">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <h2>Medios Digitales</h2>
+                </div>
+            </div>
+
+            <div class="social-grid">
+                <a href="http://www.youtube.com/@ademministerios" class="social-btn full-width" target="_blank" rel="noopener">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Canal de YouTube</span>
+                </a>
+                <a href="https://www.instagram.com/ademministerios?stkn=andqc3poMmQ1a3Rh" class="social-btn" target="_blank" rel="noopener">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1HMSNpgig6/" class="social-btn" target="_blank" rel="noopener">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <span>Facebook</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Canalización de Oración & Consejería Pastoral -->
+        <a href="https://wa.me/51923031561?text=Hola,%20me%20gustar%C3%ADa%20solicitar%20un%20motivo%20de%20oraci%C3%B3n%20o%20consejer%C3%ADa%20pastoral." class="btn-whatsapp-primary" target="_blank" rel="noopener">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            Petición de Oración o Consejería Pastoral
+        </a>
+
+        <!-- Footer Teocéntrico -->
+        <footer class="footer">
+            <p class="footer-quote">«Soli Deo Gloria — Solo a Dios la Gloria»</p>
+            <p class="footer-brand">© ADEM MINISTERIOS</p>
+        </footer>
+
+    </div>
+
+    <!-- Script para el Versículo del Día -->
+    <script>
+        const dailyVerses = [
+            { day: "DOMINGO", text: "«Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.»", ref: "Mateo 18:20" },
+            { day: "LUNES", text: "«Jehová es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar.»", ref: "Salmo 23:1-2" },
+            { day: "MARTES", text: "«Todo lo puedo en Cristo que me fortalece.»", ref: "Filipenses 4:13" },
+            { day: "MIÉRCOLES", text: "«Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos/"+
+              "sus caminos, y él enderezará tus veredas.»", ref: "Proverbios 3:5-6" },
+            { day: "JUEVES", text: "«Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas.»", ref: "Josué 1:9" },
+            { day: "VIERNES", text: "«Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza.»", ref: "Gálatas 5:22-23" },
+            { day: "SÁBADO", text: "«Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.»", ref: "Jeremías 33:3" }
+        ];
+
+        const todayIndex = new Date().getDay();
+        const todayVerse = dailyVerses[todayIndex];
+        document.getElementById('verse-day').textContent = "VERSÍCULO DEL " + todayVerse.day;
+        document.getElementById('verse-text').textContent = todayVerse.text;
+        document.getElementById('verse-ref').textContent = todayVerse.ref;
+    </script>
+
+    <!-- Script para Cargar Carrusel de Eventos desde Google Sheets -->
+    <script>
+        const GOOGLE_SHEET_ID = '1ofL7mpogFTyisJmOibjNmHss218SOCNN88OoTmlxR60';
+
+        let eventsList = [];
+        let currentEventIndex = 0;
+
+        function renderCurrentEvent() {
+            if (eventsList.length === 0) return;
+            const item = eventsList[currentEventIndex];
+            if (item.badge) document.getElementById('event-badge').textContent = item.badge;
+            document.getElementById('event-title').textContent = item.title;
+            if (item.meta) document.getElementById('event-meta-text').textContent = item.meta;
+            if (item.desc) document.getElementById('event-desc').textContent = item.desc;
+
+            const dots = document.querySelectorAll('#carousel-dots .dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentEventIndex);
+            });
+        }
+
+        if (GOOGLE_SHEET_ID) {
+            const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(text => {
+                    const json = JSON.parse(text.substring(47, text.length - 2));
+                    const rows = json.table.rows;
+
+                    eventsList = [];
+                    rows.forEach(row => {
+                        const c = row.c;
+                        if (c && c[1] && c[1].v) {
+                            eventsList.push({
+                                badge: c[0] && c[0].v ? String(c[0].v) : 'EVENTO',
+                                title: c[1] && c[1].v ? String(c[1].v) : '',
+                                meta: c[2] && c[2].v ? String(c[2].v) : '',
+                                desc: c[3] && c[3].v ? String(c[3].v) : ''
+                            });
+                        }
+                    });
+
+                    if (eventsList.length > 0) {
+                        renderCurrentEvent();
+                        if (eventsList.length > 1) {
+                            document.getElementById('carousel-controls').style.display = 'flex';
+                            const dotsContainer = document.getElementById('carousel-dots');
+                            dotsContainer.innerHTML = '';
+                            eventsList.forEach((_, idx) => {
+                                const dot = document.createElement('div');
+                                dot.className = 'dot' + (idx === 0 ? ' active' : '');
+                                dotsContainer.appendChild(dot);
+                            });
+                        }
+                    }
+                })
+                .catch(err => console.error('Error al conectar con la hoja:', err));
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (eventsList.length === 0) return;
+            currentEventIndex = (currentEventIndex - 1 + eventsList.length) % eventsList.length;
+            renderCurrentEvent();
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (eventsList.length === 0) return;
+            currentEventIndex = (currentEventIndex + 1) % eventsList.length;
+            renderCurrentEvent();
+        });
+    </script>
+
+</body>
+</html>
